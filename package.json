@@ -24,6 +24,10 @@
       {
         "command": "promptContextPicker.showFileIndexCount",
         "title": "Prompt Context Picker: Show Indexed File Count"
+      },
+      {
+        "command": "promptContextPicker.insertFileReference",
+        "title": "Prompt Context Picker: Insert File Reference"
       }
     ],
     "configuration": {
@@ -55,7 +59,7 @@
         "promptContextPicker.insertFormat": {
           "type": "string",
           "default": "@${path}",
-          "markdownDescription": "Format used when inserting a selected file reference. Use `${path}` for the workspace-relative path."
+          "markdownDescription": "Format used when inserting a selected file reference. Variables: `${path}` (workspace-relative path), `${dir}` (directory), `${name}` (file name), `${nameNoExt}` (file name without extension), `${ext}` (extension with dot)."
         }
       }
     }
