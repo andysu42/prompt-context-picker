@@ -122,23 +122,23 @@ Allow basic user customization.
 
 Add settings for:
 
-- `atContext.exclude`
-- `atContext.maxResults`
-- `atContext.insertFormat`
+- `promptContextPicker.exclude`
+- `promptContextPicker.maxResults`
+- `promptContextPicker.insertFormat`
 
 ### Suggested Defaults
 
 ```json
 {
-  "atContext.exclude": [
+  "promptContextPicker.exclude": [
     "**/node_modules/**",
     "**/dist/**",
     "**/build/**",
     "**/.git/**",
     "**/coverage/**"
   ],
-  "atContext.maxResults": 200,
-  "atContext.insertFormat": "@${path}"
+  "promptContextPicker.maxResults": 200,
+  "promptContextPicker.insertFormat": "@${path}"
 }
 ```
 

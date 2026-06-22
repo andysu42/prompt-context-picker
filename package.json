@@ -1,0 +1,40 @@
+{
+  "name": "prompt-context-picker",
+  "displayName": "Prompt Context Picker",
+  "description": "Type @ in any editable file to insert a workspace-relative file reference for AI coding agent prompts.",
+  "version": "0.0.1",
+  "publisher": "prompt-context-picker",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "promptContextPicker.refreshFileIndex",
+        "title": "Prompt Context Picker: Refresh File Index"
+      },
+      {
+        "command": "promptContextPicker.showFileIndexCount",
+        "title": "Prompt Context Picker: Show Indexed File Count"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.4.0"
+  }
+}

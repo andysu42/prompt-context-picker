@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Build output
+out/
+dist/
+
+# Packaged extension
+*.vsix
+
+# Test artifacts
+.vscode-test/
+coverage/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+*.swp

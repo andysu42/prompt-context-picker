@@ -133,15 +133,15 @@ The extension should eventually support these settings:
 
 ```json
 {
-  "atContext.exclude": [
+  "promptContextPicker.exclude": [
     "**/node_modules/**",
     "**/dist/**",
     "**/build/**",
     "**/.git/**",
     "**/coverage/**"
   ],
-  "atContext.maxResults": 200,
-  "atContext.insertFormat": "@${path}"
+  "promptContextPicker.maxResults": 200,
+  "promptContextPicker.insertFormat": "@${path}"
 }
 ```
 
