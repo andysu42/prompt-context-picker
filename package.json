@@ -25,7 +25,40 @@
         "command": "promptContextPicker.showFileIndexCount",
         "title": "Prompt Context Picker: Show Indexed File Count"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "Prompt Context Picker",
+      "properties": {
+        "promptContextPicker.exclude": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "**/node_modules/**",
+            "**/dist/**",
+            "**/build/**",
+            "**/.git/**",
+            "**/coverage/**",
+            "**/.next/**",
+            "**/.nuxt/**",
+            "**/.output/**"
+          ],
+          "markdownDescription": "Glob patterns excluded from the workspace file index. Files matching any pattern will not appear in `@` suggestions."
+        },
+        "promptContextPicker.maxResults": {
+          "type": "number",
+          "default": 200,
+          "minimum": 1,
+          "markdownDescription": "Maximum number of files returned by the workspace file index."
+        },
+        "promptContextPicker.insertFormat": {
+          "type": "string",
+          "default": "@${path}",
+          "markdownDescription": "Format used when inserting a selected file reference. Use `${path}` for the workspace-relative path."
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",

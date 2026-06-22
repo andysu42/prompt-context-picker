@@ -10,9 +10,18 @@ writing prompts. See [docs/product-brief.md](docs/product-brief.md) for details.
 
 ## Status
 
-Implemented: **Phase 1 (project setup)**, **Phase 2 (workspace file index)**, and
-**Phase 3 (`@` completion provider)**. Typing `@` in any editable file now
-suggests workspace files and inserts a reference like `@src/main.ts`.
+Implemented: **Phase 1 (project setup)**, **Phase 2 (workspace file index)**,
+**Phase 3 (`@` completion provider)**, and **Phase 4 (configuration)**. Typing
+`@` in any editable file suggests workspace files and inserts a reference like
+`@src/main.ts`, and the behavior is configurable via settings.
+
+## Settings
+
+| Setting | Default | Description |
+| --- | --- | --- |
+| `promptContextPicker.exclude` | common deps/build/system globs | Glob patterns excluded from the file index. |
+| `promptContextPicker.maxResults` | `200` | Maximum number of files returned by the index. |
+| `promptContextPicker.insertFormat` | `@${path}` | Format for the inserted reference (`${path}` = workspace-relative path). |
 
 ## Development
 
