@@ -49,7 +49,9 @@ export function getConfig(): AtContextConfig {
   const insertFormat = config.get<string>("insertFormat");
 
   return {
-    exclude: Array.isArray(exclude) && exclude.length > 0 ? exclude : [...DEFAULT_EXCLUDE],
+    // Respect an explicit array (including an empty one, meaning "exclude
+    // nothing"); only fall back when the value is missing or the wrong type.
+    exclude: Array.isArray(exclude) ? exclude : [...DEFAULT_EXCLUDE],
     maxResults:
       typeof maxResults === "number" && maxResults > 0
         ? Math.floor(maxResults)

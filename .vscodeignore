@@ -1,0 +1,18 @@
+# Source & build tooling (only compiled output in out/ is needed at runtime)
+src/**
+**/*.ts
+**/*.map
+tsconfig.json
+
+# Repo / editor / dev files
+.vscode/**
+.gitignore
+.vscodeignore
+package-lock.json
+docs/**
+
+# High-res icon source (only the packaged 128x128 images/icon.png is needed)
+prompt_context_picker_icon.png
+
+# OS files
+**/.DS_Store

@@ -3,13 +3,33 @@
   "displayName": "Prompt Context Picker",
   "description": "Type @ in any editable file to insert a workspace-relative file reference for AI coding agent prompts.",
   "version": "0.0.1",
-  "publisher": "prompt-context-picker",
+  "publisher": "andysu42",
   "license": "MIT",
+  "icon": "images/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andysu42/prompt-context-picker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/andysu42/prompt-context-picker/issues"
+  },
+  "homepage": "https://github.com/andysu42/prompt-context-picker#readme",
   "engines": {
     "vscode": "^1.85.0"
   },
   "categories": [
     "Other"
+  ],
+  "keywords": [
+    "prompt",
+    "context",
+    "file reference",
+    "completion",
+    "ai",
+    "vibe coding",
+    "claude",
+    "copilot",
+    "cursor"
   ],
   "main": "./out/extension.js",
   "activationEvents": [
@@ -24,8 +44,45 @@
       {
         "command": "promptContextPicker.showFileIndexCount",
         "title": "Prompt Context Picker: Show Indexed File Count"
+      },
+      {
+        "command": "promptContextPicker.insertFileReference",
+        "title": "Prompt Context Picker: Insert File Reference"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "Prompt Context Picker",
+      "properties": {
+        "promptContextPicker.exclude": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "**/node_modules/**",
+            "**/dist/**",
+            "**/build/**",
+            "**/.git/**",
+            "**/coverage/**",
+            "**/.next/**",
+            "**/.nuxt/**",
+            "**/.output/**"
+          ],
+          "markdownDescription": "Glob patterns excluded from the workspace file index. Files matching any pattern will not appear in `@` suggestions."
+        },
+        "promptContextPicker.maxResults": {
+          "type": "number",
+          "default": 200,
+          "minimum": 1,
+          "markdownDescription": "Maximum number of files returned by the workspace file index."
+        },
+        "promptContextPicker.insertFormat": {
+          "type": "string",
+          "default": "@${path}",
+          "markdownDescription": "Format used when inserting a selected file reference. Variables: `${path}` (workspace-relative path), `${dir}` (directory), `${name}` (file name), `${nameNoExt}` (file name without extension), `${ext}` (extension with dot)."
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
