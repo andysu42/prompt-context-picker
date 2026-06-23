@@ -3,13 +3,33 @@
   "displayName": "Prompt Context Picker",
   "description": "Type @ in any editable file to insert a workspace-relative file reference for AI coding agent prompts.",
   "version": "0.0.1",
-  "publisher": "prompt-context-picker",
+  "publisher": "andysu42",
   "license": "MIT",
+  "icon": "images/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andysu42/prompt-context-picker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/andysu42/prompt-context-picker/issues"
+  },
+  "homepage": "https://github.com/andysu42/prompt-context-picker#readme",
   "engines": {
     "vscode": "^1.85.0"
   },
   "categories": [
     "Other"
+  ],
+  "keywords": [
+    "prompt",
+    "context",
+    "file reference",
+    "completion",
+    "ai",
+    "vibe coding",
+    "claude",
+    "copilot",
+    "cursor"
   ],
   "main": "./out/extension.js",
   "activationEvents": [
