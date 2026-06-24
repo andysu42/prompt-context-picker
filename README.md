@@ -1,27 +1,56 @@
-# prompt-context-picker
+# Prompt Context Picker
 
-**Prompt Context Picker** is a VS Code extension that helps you prepare prompts/specs for AI
-coding agents. Type `@` in any editable file to search workspace files and insert
-a workspace-relative file reference such as `@src/components/UserCard.vue`.
+Type `@` in any file to search your workspace and insert a file reference —
+the same `@file` experience you get inside AI coding agents, but right in your
+editor while you draft prompts and specs.
 
-It is **not** an AI agent: it does not call any LLM API, execute tasks, or inject
-file contents. It only inserts text to help you reference project files while
-writing prompts. See [docs/product-brief.md](docs/product-brief.md) for details.
+```md
+Please refactor the user profile display logic.
 
-## Status
+Reference these files:
+@src/components/UserCard.vue
+@src/stores/user.ts
+@src/api/user.ts
+```
 
-Implemented: **Phase 1 (project setup)**, **Phase 2 (workspace file index)**,
-**Phase 3 (`@` completion provider)**, **Phase 4 (configuration)**, and part of
-**Phase 6 (polish)**. Typing `@` in any editable file suggests workspace files
-and inserts a reference like `@src/main.ts`, and the behavior is configurable
-via settings.
+Prepare high-quality prompts for **Claude, Copilot, Cursor, Codex** and other
+AI coding agents without leaving the file you're writing in — then copy the
+finished prompt into your agent of choice.
 
-Phase 6 so far: the file index refreshes automatically on file create/delete/
-rename, workspace-folder changes, and settings changes; recently inserted files
-are ranked to the top of the suggestion list (per workspace); a
-`Prompt Context Picker: Insert File Reference` command offers a QuickPick
-(fuzzy-filtered) alternative to the inline `@` trigger; and `insertFormat`
-supports multiple variables.
+## Features
+
+- **`@` to reference files** — type `@` in any editable file to get workspace
+  file suggestions, then insert a workspace-relative reference like
+  `@src/main.ts`.
+- **Works everywhere** — Markdown, plain text, and source files alike
+  (`.md`, `.txt`, `.ts`, `.tsx`, `.js`, `.vue`, `.json`, `.css`, `.html`, …),
+  not just Markdown.
+- **Fuzzy QuickPick** — prefer a command? Run **Insert File Reference** to pick
+  a file from a fuzzy-filtered list and insert it at the cursor.
+- **Recent files first** — files you reference most are surfaced at the top.
+- **Always up to date** — the file index refreshes automatically as you add,
+  delete, or rename files.
+- **Smart excludes** — `node_modules`, `dist`, `build`, `.git`, and other noise
+  are filtered out by default.
+- **Customizable output** — change the inserted format to match your workflow.
+
+## Usage
+
+1. Open any editable file.
+2. Type `@`.
+3. Pick a file from the suggestions (keep typing to filter).
+4. A reference like `@src/components/UserCard.vue` is inserted.
+
+Or open the Command Palette and run **Prompt Context Picker: Insert File
+Reference** to choose a file from a QuickPick.
+
+## Commands
+
+| Command | Description |
+| --- | --- |
+| `Prompt Context Picker: Insert File Reference` | Pick a file from a QuickPick and insert its reference at the cursor. |
+| `Prompt Context Picker: Refresh File Index` | Rebuild the workspace file index. |
+| `Prompt Context Picker: Show Indexed File Count` | Show how many files are currently indexed. |
 
 ## Settings
 
@@ -29,39 +58,28 @@ supports multiple variables.
 | --- | --- | --- |
 | `promptContextPicker.exclude` | common deps/build/system globs | Glob patterns excluded from the file index. |
 | `promptContextPicker.maxResults` | `200` | Maximum number of files returned by the index. |
-| `promptContextPicker.insertFormat` | `@${path}` | Format for the inserted reference. Variables: `${path}`, `${dir}`, `${name}`, `${nameNoExt}`, `${ext}`. |
+| `promptContextPicker.insertFormat` | `@${path}` | Format for the inserted reference. |
 
-## Development
+The inserted format supports these variables (derived from the
+workspace-relative path):
 
-```bash
-npm install      # install dev dependencies
-npm run compile  # build TypeScript into ./out
-npm run watch    # rebuild on change
-```
+| Variable | Example (`src/components/Button.vue`) |
+| --- | --- |
+| `${path}` | `src/components/Button.vue` |
+| `${dir}` | `src/components` |
+| `${name}` | `Button.vue` |
+| `${nameNoExt}` | `Button` |
+| `${ext}` | `.vue` |
 
-Press **F5** in VS Code to launch the extension in an Extension Development Host.
+For example, set `insertFormat` to `[[${name}]](${path})` to insert Markdown
+links instead of `@` references.
 
-### Commands
+## Good to know
 
-From the Command Palette:
-
-- `Prompt Context Picker: Insert File Reference` — pick a file from a QuickPick and insert its reference at the cursor.
-- `Prompt Context Picker: Refresh File Index` — rebuilds the workspace file index and reports the count.
-- `Prompt Context Picker: Show Indexed File Count` — shows how many files are currently indexed.
-
-## Project structure
-
-```txt
-src/
-  extension.ts            # activation, file-index cache + watcher, commands
-  fileIndex.ts            # workspace file discovery -> relative paths
-  completionProvider.ts   # `@` trigger -> file suggestions -> inserted reference
-  quickPick.ts            # "Insert File Reference" QuickPick command
-  recentFiles.ts          # per-workspace recently-used tracking
-  format.ts               # insertFormat variable substitution
-  config.ts               # settings + defaults (exclude / maxResults / insertFormat)
-```
+Prompt Context Picker is **not** an AI agent. It does not call any LLM, execute
+tasks, or read/inject file contents — it only inserts a text reference so you
+can reference project files quickly while writing prompts.
 
 ## License
 
-MIT
+[MIT](LICENSE)
