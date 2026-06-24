@@ -2,7 +2,7 @@
   "name": "prompt-context-picker",
   "displayName": "Prompt Context Picker",
   "description": "Type @ in any editable file to insert a workspace-relative file reference for AI coding agent prompts.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "KailunLabs",
   "license": "MIT",
   "icon": "images/icon.png",
